@@ -1,3 +1,3 @@
 # 03-snakemake-style
 
-TODO: pendiente de definir.
+TODO: not yet defined.

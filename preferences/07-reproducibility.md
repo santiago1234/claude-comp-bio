@@ -1,3 +1,3 @@
 # 07-reproducibility
 
-TODO: pendiente de definir.
+TODO: not yet defined.

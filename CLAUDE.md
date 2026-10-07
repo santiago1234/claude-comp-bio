@@ -1,6 +1,12 @@
-# Preferencias de bioinformática
+# Bioinformatics preferences
 
-Preferencias personales para proyectos de biología computacional. Aplican a todos los proyectos salvo que el CLAUDE.md del proyecto diga lo contrario.
+Personal preferences for computational biology projects. They apply to every project unless that project's own CLAUDE.md says otherwise.
+
+## Baseline
+- Languages: Python for pipelines and scripts; R for statistics, Bioconductor, and plots.
+- Workflow manager: Snakemake. Package manager: mamba (conda-forge + bioconda).
+- Compute: develop and test on a macOS laptop, run heavy jobs on an HPC cluster with SLURM.
+- Write code, comments, file names, and docs in English.
 
 @preferences/01-project-layout.md
 @preferences/02-naming.md

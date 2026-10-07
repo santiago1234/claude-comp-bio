@@ -1,3 +1,3 @@
 # 06-coding-style
 
-TODO: pendiente de definir.
+TODO: not yet defined.

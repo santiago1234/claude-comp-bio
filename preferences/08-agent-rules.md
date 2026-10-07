@@ -1,3 +1,3 @@
 # 08-agent-rules
 
-TODO: pendiente de definir.
+TODO: not yet defined.
