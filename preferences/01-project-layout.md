@@ -28,7 +28,8 @@ project/
 │       └── results/          # local outputs (gitignored)
 ├── results/                  # curated key outputs (may be a symlink to a NAS)
 ├── docs/
-│   └── notebook.md           # dated lab notebook
+│   ├── status.md             # current project state, updated by Claude each session
+│   └── notebook.md           # dated lab notebook (history)
 ├── envs/                     # project-wide shared mamba envs
 ├── profiles/                 # snakemake profiles: local/, slurm/
 └── scratch -> <scratch dir>  # symlink, gitignored (see 05-compute.md)
