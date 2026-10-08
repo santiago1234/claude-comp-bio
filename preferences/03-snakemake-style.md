@@ -157,7 +157,37 @@ Don't use `wrapper:`. Write a visible `shell:` command with its own env in `envs
 - No per-rule constraints unless they're needed.
 - Patterns mirror the naming rules in 02-naming.md (e.g. `sample = r"[A-Za-z0-9_]+"`).
 
-## TODO (still to be decided)
-- 11. Placement of `rule all` and use of `expand()`.
-- 12. Formatting and linting (`snakefmt` would strip the spaces around `=`; `snakemake --lint`).
-- 13. Other readability details: directive order, blank lines between rules, file split (`rules/*.smk`).
+## 11. `rule all`, `expand()`, and includes
+- `rule all` is the first rule, right after the header.
+- It has only named `input:`. No `output:`, `shell:`, or `log:`. Real work goes in its own rule.
+- Its targets are the final outputs in `RESULTS`, not scratch intermediates or logs.
+- Use `expand()` with an f-string and double braces. Don't concatenate strings:
+  ```python
+  rule all:
+      input:
+          ibd = expand(f"{RESULTS}/ibd/mex.chr{{chrn}}.ibd.gz", chrn = CHROMS),
+          hbd = expand(f"{RESULTS}/ibd/mex.chr{{chrn}}.hbd.gz", chrn = CHROMS),
+
+
+  include: "rules/common.smk"
+  include: "rules/prepare_data.smk"
+  include: "rules/ibd.smk"
+  ```
+- Put the `include:` lines right after `rule all`, with `rules/common.smk` always first.
+- If the target list grows past about 5 entries, move it into `get_final_targets()` in `common.smk`.
+
+## 12. Formatting and linting
+- Don't use `snakefmt`. It strips the spaces around `=` and the column alignment from point 1. Format by hand following this guide.
+- Run `snakemake --lint` when a workflow is finished or before an important commit, and fix what it reports. If a lint warning contradicts this guide, the guide wins.
+- Before running, check in this order: `--lint`, then `-n`, then the real run.
+
+## 13. Readability details
+- Use a fixed directive order in every rule:
+  docstring, `input`, `output`, `log`, `benchmark`, `params`, `threads`, `resources`, `conda`, `shell`.
+- Leave two blank lines between rules.
+- Always use double quotes. Use triple double quotes for docstrings and `shell:`.
+- Add a trailing comma after every entry in `input`, `output`, `params`, and `resources`, so git diffs stay clean.
+- File split:
+  - Small workflow (about 5 rules or fewer): everything in the `Snakefile`.
+  - Larger workflow: the `Snakefile` holds only the header, `rule all`, and the `include:` lines. Rules go in `rules/<step>.smk` and helper functions in `rules/common.smk`.
+- Comment only where it adds something: why a parameter has its value, a resource calibration, or an unusual format. Don't comment the obvious.
