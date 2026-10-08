@@ -41,8 +41,6 @@ rule freeze_vcf:
     resources:
         mem_mb  = 8000,     # calibrated from benchmark: max_rss ~ 5 GB
         runtime = 120,      # minutes
-    conda:
-        "../envs/bcftools.yaml"
     shell:
         """
         bcftools view \
@@ -104,7 +102,7 @@ Use this order: `min_version`, then `configfile:`, then **UPPERCASE constants** 
 - Use triple-quoted, multi-line `shell:` with one option per line.
 
 ## 6. No wrappers
-Don't use `wrapper:`. Write a visible `shell:` command with its own env in `envs/`. Use a wrapper only if the user explicitly asks for one.
+Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the workflow's env (see 04-environments.md). Use a wrapper only if the user explicitly asks for one.
 
 ## 7. `temp()`, `protected()`, `directory()`
 - Never wrap anything in `RESULTS` with `temp()`.
@@ -131,7 +129,6 @@ Don't use `wrapper:`. Write a visible `shell:` command with its own env in `envs
   # profiles/slurm/config.yaml
   executor: slurm
   jobs: 50
-  software-deployment-method: conda
   default-resources:
     mem_mb: 4000
     runtime: 60
@@ -143,7 +140,6 @@ Don't use `wrapper:`. Write a visible `shell:` command with its own env in `envs
   ```yaml
   # profiles/local/config.yaml
   cores: 4
-  software-deployment-method: conda
   printshellcmds: true
   ```
 - Always do a dry run (`-n`) before a real run:
@@ -183,7 +179,7 @@ Don't use `wrapper:`. Write a visible `shell:` command with its own env in `envs
 
 ## 13. Readability details
 - Use a fixed directive order in every rule:
-  docstring, `input`, `output`, `log`, `benchmark`, `params`, `threads`, `resources`, `conda`, `shell`.
+  docstring, `input`, `output`, `log`, `benchmark`, `params`, `threads`, `resources`, `conda` (only when using per-rule envs), `shell`.
 - Leave two blank lines between rules.
 - Always use double quotes. Use triple double quotes for docstrings and `shell:`.
 - Add a trailing comma after every entry in `input`, `output`, `params`, and `resources`, so git diffs stay clean.
