@@ -5,6 +5,7 @@
 ## Default: one env per workflow, activated by hand
 - Each workflow has a single env file: `workflows/<name>/envs/<name>.yaml`.
 - The user activates it before running: `mamba activate <name>`, then `snakemake ...`.
+- **Snakemake is installed inside each workflow env** (`snakemake=9`, plus `snakemake-executor-plugin-slurm` for cluster runs). There's no global Snakemake, so the version comes from the env.
 - Rules don't carry a `conda:` directive, and profiles don't set `software-deployment-method: conda`.
 - Experiments reuse a workflow's env, or the project-wide `envs/`, whenever possible. An experiment gets its own `envs/` only if it really needs one.
 
@@ -26,6 +27,7 @@ channels:
 dependencies:
   - python=3.12
   - snakemake=9
+  - snakemake-executor-plugin-slurm
   - bcftools=1.21
   - pandas
 ```
