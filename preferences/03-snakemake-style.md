@@ -132,7 +132,7 @@ Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the wor
   default-resources:
     mem_mb: 4000
     runtime: 60
-    slurm_partition: "<TODO>"   # see 05-compute.md
+    slurm_partition: "light"    # server-specific, see 05-compute.md
   latency-wait: 60
   rerun-incomplete: true
   printshellcmds: true
