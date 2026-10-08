@@ -37,4 +37,4 @@ dependencies:
 - To freeze the exact state of an important run, export it if the user asks: `mamba env export > envs/<name>.lock.yaml`.
 
 ## Tools not on conda
-Put the binary or repo in the workflow's `bin/` and its path in the config (`hap_ibd_jar: "bin/hap-ibd.jar"`). Record in `bin/README.md` where each one came from, its version, and the download date.
+Put the binary or repo in the workflow's `bin/` and point to it from the Snakefile header with `workflow.basedir` (`HAP_IBD = f"{workflow.basedir}/bin/hap-ibd.jar"`, see 03-snakemake-style.md point 0). Record in `bin/README.md` where each one came from, its version, and the download date.

@@ -43,6 +43,7 @@ project/
 - **Workflows and experiments have the same internal shape** (README, Snakefile, src, envs, results). A workflow is reusable and undated. An experiment is dated and answers one question.
 - **Promote to `workflows/`**: when code from one experiment gets reused in another, move it to `workflows/` and call it with Snakemake's `module` directive. Do not copy-paste it.
 - **`data/raw/` is read-only.** Never write, rename, or delete anything in it. Record provenance and checksums in `data/README.md`.
+- **Where outputs go**: a workflow writes to `RESULTS`, the `results:` key of the run's config (often outside the repo). The experiment's own scripts, called from `runall.sh`, write small outputs to the experiment's local `results/`.
 - **`data/` vs `results/`**: `data/generated/` holds things produced in-project that act as inputs (a filtered annotation, a custom index, a derived metadata table). `results/` holds findings.
 - **Top-level `results/` is curated by the user.** It may live elsewhere, such as a NAS, through a symlink. Don't promote anything to it unless asked. When you do, use the experiment's folder name so the provenance is obvious, and never hand-edit what's inside.
 - **Environment lookup order**: the experiment's `envs/` (if any), then the workflow's `envs/`, then the project-wide `envs/`.

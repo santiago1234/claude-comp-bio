@@ -37,7 +37,7 @@ def compute_proportions(bed: pd.DataFrame) -> pd.DataFrame:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--beds", type=Path, required=True, help="Directory with BED files")
-    parser.add_argument("--out", type=Path, required=True, help="Output CSV")
+    parser.add_argument("--out", type=Path, required=True, help="Output TSV")
     args = parser.parse_args()
     ...
 

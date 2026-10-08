@@ -15,7 +15,8 @@ configfile: "config/config.yaml"
 SCRATCH  = config["scratch"]
 RESULTS  = config["results"]
 CHROMS   = config["chroms"]
-HAP_IBD  = config["hap_ibd_jar"]
+SRC      = f"{workflow.basedir}/src"
+HAP_IBD  = f"{workflow.basedir}/bin/hap-ibd.jar"
 
 wildcard_constraints:
     chrn   = r"\d+|X|Y",
@@ -52,9 +53,10 @@ rule freeze_vcf:
 ```
 
 ## 0. Snakefile header
-Use this order: `min_version`, then `configfile:`, then **UPPERCASE constants** read from the config, then `wildcard_constraints:`, then `localrules:`.
+Use this order: `min_version`, then `configfile:`, then **UPPERCASE constants** (read from the config, or pointing to files shipped with the workflow), then `wildcard_constraints:`, then `localrules:`.
 - The scratch and results directories are always called `SCRATCH` and `RESULTS` (config keys `scratch:` and `results:`). Never `RESDIR`, `OUTDIR`, etc.
 - Build paths with f-strings on those constants. Escape wildcards with double braces: `f"{SCRATCH}/vcf/chr{{chrn}}.vcf.gz"`.
+- Files shipped inside the workflow (`src/`, `bin/`) are located from `workflow.basedir` (`SRC = f"{workflow.basedir}/src"`), never with a bare relative path. Experiments run the workflow from their own folder (`--snakefile` or `module`), so `src/x.py` would resolve against the experiment, not the workflow.
 
 ## 1. Named inputs and outputs, readable assignments
 - Every `input:`, `output:`, and `params:` entry is named. Never use positional access (`output[0]`).
@@ -93,9 +95,9 @@ Use this order: `min_version`, then `configfile:`, then **UPPERCASE constants** 
   ```python
   shell:
       """
-      python src/global_ancestry.py \
+      python {SRC}/global_ancestry.py \
           --beds {input.beds} \
-          --out {output.csv} 2> {log}
+          --out {output.tsv} 2> {log}
       """
   ```
 - Don't use `script:` or `run:`.
