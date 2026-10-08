@@ -1,0 +1,10 @@
+# Cluster run. Server-specific values: see 05-compute.md in claude-comp-bio.
+executor: slurm
+jobs: 50                       # max jobs queued at once
+default-resources:
+  mem_mb: 4000
+  runtime: 60                  # minutes
+  slurm_partition: "light"     # kexol default; change on other servers
+latency-wait: 60               # shared filesystems can be slow to show new files
+rerun-incomplete: true
+printshellcmds: true

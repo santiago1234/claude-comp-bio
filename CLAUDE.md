@@ -13,6 +13,9 @@ Personal preferences for computational biology projects. They apply to every pro
 - Compute: develop and test on a macOS laptop, run heavy jobs on an HPC cluster with SLURM.
 - Write code, comments, file names, and docs in English.
 
+## New projects
+To start a project, copy the `template/` folder that sits next to this CLAUDE.md in the claude-comp-bio repo, then fill in its `README.md`, `CLAUDE.md`, and `docs/status.md`.
+
 @preferences/01-project-layout.md
 @preferences/02-naming.md
 @preferences/03-snakemake-style.md

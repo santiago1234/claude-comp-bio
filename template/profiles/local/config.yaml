@@ -1,0 +1,3 @@
+# Laptop: small tests with config/test.yaml
+cores: 4
+printshellcmds: true
