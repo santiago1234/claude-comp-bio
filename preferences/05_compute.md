@@ -16,4 +16,11 @@
 | Fixed shared data (genomes, genetic maps, masks) | `/data/data_vault/smedina/data/common-resources/` |
 | SLURM partition | `light` (default) |
 
+## Server: narval (Compute Canada)
+| What | Where |
+|---|---|
+| Scratch | `/home/smedina/scratch/YYMMDD-<keyword>/` (symlink to `/lustre07/scratch/smedina`) |
+| Fixed shared data (genomes, genetic maps, masks) | not defined yet |
+| SLURM account / partition | `def-sgravel_cpu` / `default` |
+
 On another server, ask the user for the equivalent values and record them in a section like this one.
