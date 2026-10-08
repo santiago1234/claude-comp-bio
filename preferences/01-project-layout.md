@@ -21,7 +21,8 @@ project/
 ├── experiments/              # dated analyses, each answers one question
 │   └── YYMMDD-keywords/
 │       ├── README.md         # goal, how to run, conclusion
-│       ├── Snakefile         # Noble's "runall"; may `module` a workflow
+│       ├── runall.sh         # Noble's driver script: the user runs it by hand
+│       ├── Snakefile         # OPTIONAL; may `module` a workflow
 │       ├── config.yaml
 │       ├── src/              # scripts specific to this experiment
 │       ├── envs/             # OPTIONAL, only if it needs its own env
@@ -38,6 +39,7 @@ project/
 ## Rules
 
 - **Experiment folders** are named `YYMMDD-keywords`: a 6-digit date, a hyphen, then short kebab-case keywords (`261007-deseq2-tumor-vs-normal`). Use the date the experiment starts.
+- **Every experiment has a `runall.sh`**, Noble's driver script. The user runs it by hand from the terminal (`bash runall.sh`). It runs the whole analysis in order, whether by calling Snakemake or the scripts directly. It must be very readable (see 06-coding-style.md).
 - **Workflows and experiments have the same internal shape** (README, Snakefile, src, envs, results). A workflow is reusable and undated. An experiment is dated and answers one question.
 - **Promote to `workflows/`**: when code from one experiment gets reused in another, move it to `workflows/` and call it with Snakemake's `module` directive. Do not copy-paste it.
 - **`data/raw/` is read-only.** Never write, rename, or delete anything in it. Record provenance and checksums in `data/README.md`.

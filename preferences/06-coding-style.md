@@ -78,6 +78,45 @@ p <- df |>
 ggsave(opts$out, p, width = 6, height = 5)
 ```
 
+## Bash: `runall.sh` (experiment driver)
+Noble's driver script. The user reads it and runs it by hand, so **readability beats cleverness**:
+- Start with a header comment: what the experiment does and how to run it.
+- Put `set -euo pipefail` at the top.
+- Set every path and parameter in UPPERCASE variables at the top. No hard-coded paths further down.
+- Use numbered steps, each with a comment block and an `echo` showing progress.
+- Put one command option per line, with `\`.
+- No functions, loops, or logic beyond what's needed. It's a recipe, not a program.
+
+```bash
+#!/usr/bin/env bash
+# 261007-ibd-mexico
+# Detect IBD segments in MXB samples with the ibd-detect workflow,
+# then summarize segment lengths per population.
+#
+# Usage:  mamba activate ibd-detect && bash runall.sh
+set -euo pipefail
+
+WORKFLOW="../../workflows/ibd-detect"
+CONFIG="config.yaml"
+PROFILE="../../profiles/slurm"
+SCRATCH="/data/tmp/smedina/261007-ibd-mexico"
+
+# ---- Step 1: run the IBD workflow on SLURM -------------------------
+echo "[1/2] Running ibd-detect workflow..."
+snakemake \
+    --snakefile "${WORKFLOW}/Snakefile" \
+    --configfile "${CONFIG}" \
+    --profile "${PROFILE}"
+
+# ---- Step 2: summarize segment lengths -----------------------------
+echo "[2/2] Summarizing IBD segments..."
+python src/summarize_ibd.py \
+    --ibd-dir "${SCRATCH}/ibd" \
+    --out results/ibd_summary.tsv
+
+echo "Done."
+```
+
 ## Both
 - Anything random takes a `--seed` argument with a fixed default.
 - Validate inputs at the start, with error messages that say what failed and why.
