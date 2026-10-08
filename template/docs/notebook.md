@@ -1,4 +1,4 @@
-# Lab notebook — <project-name>
+# Lab notebook — <project_name>
 
 Newest entry on top. Record failures too.
 

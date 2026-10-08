@@ -13,7 +13,7 @@ _Last updated: 2026-10-07_
 One or two lines on what is being worked on right now.
 
 ## Done recently
-- 261007-ibd-mexico: hap-ibd run on chr1-22, results in data_vault.
+- 261007-ibd_mexico: hap-ibd run on chr1-22, results in data_vault.
 
 ## Next steps
 1. Filter IBD segments < 4 cM.
@@ -28,17 +28,17 @@ One or two lines on what is being worked on right now.
 - At the end of anything meaningful (an experiment, a key decision), **Claude proposes the entry and the user approves** it before it's written.
 
 ```markdown
-## 2026-10-07 · 261007-ibd-mexico
+## 2026-10-07 · 261007-ibd_mexico
 **Goal:** detect IBD segments in MXB with hap-ibd.
-**Done:** ran ibd-detect workflow on chr1-22 (config in experiments/261007-ibd-mexico/).
-**Result:** ~2.1M segments; results in /data/data_vault/.../261007-ibd-mexico/.
+**Done:** ran ibd_detect workflow on chr1-22 (config in experiments/261007-ibd_mexico/).
+**Result:** ~2.1M segments; results in /data/data_vault/.../261007-ibd_mexico/.
 **Next:** filter segments < 4 cM, compare across populations.
 ```
 
 ## Experiment README
 Every `experiments/YYMMDD-keywords/README.md` follows this template:
 ```markdown
-# 261007-ibd-mexico
+# 261007-ibd_mexico
 **Question:** ...
 **How to run:** `bash runall.sh`
 **Inputs:** ...

@@ -1,4 +1,4 @@
-# <project-name>
+# <project_name>
 
 Project-specific context. Global preferences come from the claude-comp-bio repo; anything here overrides them.
 

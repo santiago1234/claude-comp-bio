@@ -104,7 +104,7 @@ Use this order: `min_version`, then `configfile:`, then **UPPERCASE constants** 
 - Use triple-quoted, multi-line `shell:` with one option per line.
 
 ## 6. No wrappers
-Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the workflow's env (see 04-environments.md). Use a wrapper only if the user explicitly asks for one.
+Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the workflow's env (see 04_environments.md). Use a wrapper only if the user explicitly asks for one.
 
 ## 7. `temp()`, `protected()`, `directory()`
 - Never wrap anything in `RESULTS` with `temp()`.
@@ -134,7 +134,7 @@ Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the wor
   default-resources:
     mem_mb: 4000
     runtime: 60
-    slurm_partition: "light"    # server-specific, see 05-compute.md
+    slurm_partition: "light"    # server-specific, see 05_compute.md
   latency-wait: 60
   rerun-incomplete: true
   printshellcmds: true
@@ -153,7 +153,7 @@ Don't use `wrapper:`. Write a visible `shell:` command, with the tool in the wor
 ## 10. Wildcard constraints
 - Use one global `wildcard_constraints:` block in the header, covering **every wildcard** the workflow uses.
 - No per-rule constraints unless they're needed.
-- Patterns mirror the naming rules in 02-naming.md (e.g. `sample = r"[A-Za-z0-9_]+"`).
+- Patterns mirror the naming rules in 02_naming.md (e.g. `sample = r"[A-Za-z0-9_]+"`).
 
 ## 11. `rule all`, `expand()`, and includes
 - `rule all` is the first rule, right after the header.

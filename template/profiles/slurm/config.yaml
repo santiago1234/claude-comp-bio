@@ -1,4 +1,4 @@
-# Cluster run. Server-specific values: see 05-compute.md in claude-comp-bio.
+# Cluster run. Server-specific values: see 05_compute.md in claude-comp-bio.
 executor: slurm
 jobs: 50                       # max jobs queued at once
 default-resources:

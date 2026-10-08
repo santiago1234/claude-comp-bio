@@ -1,4 +1,4 @@
-# Status — <project-name>
+# Status — <project_name>
 _Last updated: YYYY-MM-DD_
 
 ## Current focus

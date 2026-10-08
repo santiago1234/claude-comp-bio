@@ -1,2 +1,2 @@
-scratch: "<scratch-dir>/YYMMDD-example"   # temporary files for this run
-results: "<results-dir>/YYMMDD-example"   # final outputs
+scratch: "<scratch_dir>/YYMMDD-example"   # temporary files for this run
+results: "<results_dir>/YYMMDD-example"   # final outputs

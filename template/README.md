@@ -1,4 +1,4 @@
-# <project-name>
+# <project_name>
 
 One paragraph: what question this project answers.
 
@@ -13,5 +13,5 @@ One paragraph: what question this project answers.
 - `profiles/`: Snakemake profiles (`local`, `slurm`).
 
 ## Setup
-    ln -s <scratch-dir>/<project> scratch
-    ln -s <persistent-results-dir> results
+    ln -s <scratch_dir>/<project> scratch
+    ln -s <persistent_results_dir> results

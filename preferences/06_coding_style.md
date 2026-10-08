@@ -1,6 +1,6 @@
 # 06 — Coding style (Python and R)
 
-Scripts are CLIs called from Snakemake `shell:` (see 03-snakemake-style.md, point 5). Each one must also run on its own.
+Scripts are CLIs called from Snakemake `shell:` (see 03_snakemake_style.md, point 5). Each one must also run on its own.
 
 ## Python
 - Follow PEP 8. Format with `ruff format` and check with `ruff check`. The aligned-`=` style is for Snakemake only, not Python.
@@ -15,6 +15,7 @@ Scripts are CLIs called from Snakemake `shell:` (see 03-snakemake-style.md, poin
 - Add light type hints on function signatures: `def load_bed(path: Path) -> pd.DataFrame:`.
 - Give every function a short docstring with Parameters and Returns.
 - Use `pathlib.Path` for paths and `pandas` for tables.
+- Plot with `matplotlib`. Save with `fig.savefig(args.out)`; never call `plt.show()` in a script.
 
 ```python
 """Compute global ancestry proportions from gnomix BED files."""
@@ -47,7 +48,8 @@ if __name__ == "__main__":
 ```
 
 ## R
-- Follow the tidyverse style guide. Use tidyverse for data wrangling and ggplot2 for plots (preferred over matplotlib).
+Use R only for statistics or Bioconductor, when really needed (it means installing R in the env). Plots default to matplotlib; use ggplot2 only if the user asks.
+- Follow the tidyverse style guide. Use tidyverse for data wrangling.
 - Use the native pipe `|>`, not `%>%`.
 - Parse the CLI with `optparse`, using named arguments (`--input`, `--out`).
 - Script structure, in order:
@@ -89,20 +91,20 @@ Noble's driver script. The user reads it and runs it by hand, so **readability b
 
 ```bash
 #!/usr/bin/env bash
-# 261007-ibd-mexico
-# Detect IBD segments in MXB samples with the ibd-detect workflow,
+# 261007-ibd_mexico
+# Detect IBD segments in MXB samples with the ibd_detect workflow,
 # then summarize segment lengths per population.
 #
-# Usage:  mamba activate ibd-detect && bash runall.sh
+# Usage:  mamba activate ibd_detect && bash runall.sh
 set -euo pipefail
 
-WORKFLOW="../../workflows/ibd-detect"
+WORKFLOW="../../workflows/ibd_detect"
 CONFIG="config.yaml"
 PROFILE="../../profiles/slurm"
-SCRATCH="/data/tmp/smedina/261007-ibd-mexico"
+SCRATCH="/data/tmp/smedina/261007-ibd_mexico"
 
 # ---- Step 1: run the IBD workflow on SLURM -------------------------
-echo "[1/2] Running ibd-detect workflow..."
+echo "[1/2] Running ibd_detect workflow..."
 snakemake \
     --snakefile "${WORKFLOW}/Snakefile" \
     --configfile "${CONFIG}" \

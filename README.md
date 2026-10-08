@@ -32,11 +32,11 @@ Check it loaded: open Claude Code in any folder and run `/memory`. The list shou
 
 ## 2. Start a new project
 
-    cp -r ~/claude-comp-bio/template ~/path/to/new-project
-    cd ~/path/to/new-project
+    cp -r ~/claude-comp-bio/template ~/path/to/new_project
+    cd ~/path/to/new_project
     git init
 
-Then fill in the `<project-name>` and `<TODO>` placeholders in `README.md`, `CLAUDE.md`, and `docs/status.md`, and rename or delete `experiments/YYMMDD-example/`. Or open Claude Code in the folder and ask it to do it.
+Then fill in the `<project_name>` and `<TODO>` placeholders in `README.md`, `CLAUDE.md`, and `docs/status.md`, and rename or delete `experiments/YYMMDD-example/`. Or open Claude Code in the folder and ask it to do it.
 
 ## 3. Bring an existing project in line
 

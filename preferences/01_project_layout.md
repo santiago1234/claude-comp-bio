@@ -14,7 +14,7 @@ project/
 │   ├── generated/            # data produced in-project that are inputs, not results
 │   └── README.md             # source, download date, checksums for each dataset
 ├── workflows/                # reusable pipelines (no date)
-│   └── <workflow-name>/
+│   └── <workflow_name>/
 │       ├── README.md
 │       ├── Snakefile
 │       ├── rules/  envs/  src/  config/
@@ -33,13 +33,13 @@ project/
 │   └── notebook.md           # dated lab notebook (history)
 ├── envs/                     # project-wide shared mamba envs
 ├── profiles/                 # snakemake profiles: local/, slurm/
-└── scratch -> <scratch dir>  # symlink, gitignored (see 05-compute.md)
+└── scratch -> <scratch dir>  # symlink, gitignored (see 05_compute.md)
 ```
 
 ## Rules
 
-- **Experiment folders** are named `YYMMDD-keywords`: a 6-digit date, a hyphen, then short kebab-case keywords (`261007-deseq2-tumor-vs-normal`). Use the date the experiment starts.
-- **Every experiment has a `runall.sh`**, Noble's driver script. The user runs it by hand from the terminal (`bash runall.sh`). It runs the whole analysis in order, whether by calling Snakemake or the scripts directly. It must be very readable (see 06-coding-style.md).
+- **Experiment folders** are named `YYMMDD-keywords`: a 6-digit date, a hyphen, then short snake_case keywords (`261007-deseq2_tumor_vs_normal`). Use the date the experiment starts.
+- **Every experiment has a `runall.sh`**, Noble's driver script. The user runs it by hand from the terminal (`bash runall.sh`). It runs the whole analysis in order, whether by calling Snakemake or the scripts directly. It must be very readable (see 06_coding_style.md).
 - **Workflows and experiments have the same internal shape** (README, Snakefile, src, envs, results). A workflow is reusable and undated. An experiment is dated and answers one question.
 - **Promote to `workflows/`**: when code from one experiment gets reused in another, move it to `workflows/` and call it with Snakemake's `module` directive. Do not copy-paste it.
 - **`data/raw/` is read-only.** Never write, rename, or delete anything in it. Record provenance and checksums in `data/README.md`.
@@ -47,7 +47,7 @@ project/
 - **`data/` vs `results/`**: `data/generated/` holds things produced in-project that act as inputs (a filtered annotation, a custom index, a derived metadata table). `results/` holds findings.
 - **Top-level `results/` is curated by the user.** It may live elsewhere, such as a NAS, through a symlink. Don't promote anything to it unless asked. When you do, use the experiment's folder name so the provenance is obvious, and never hand-edit what's inside.
 - **Environment lookup order**: the experiment's `envs/` (if any), then the workflow's `envs/`, then the project-wide `envs/`.
-- **Every experiment ends with an entry in `docs/notebook.md`** linking to its folder (see 07-reproducibility.md).
+- **Every experiment ends with an entry in `docs/notebook.md`** linking to its folder (see 07_reproducibility.md).
 - Heavy intermediates go to `scratch/`, not to `results/`.
 
 ## Git
