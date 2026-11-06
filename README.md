@@ -10,7 +10,7 @@ My preferences for agentic bioinformatics with Claude Code. This comes from my y
 ## Contents
 
 - `CLAUDE.md`: entry point; imports everything in `preferences/`.
-- `preferences/`: layout, naming, Snakemake style, environments, compute, coding style, reproducibility, agent rules.
+- `preferences/`: layout, naming, Snakemake style, environments, compute, coding style, reproducibility, agent rules, writing style.
 - `template/`: project skeleton to copy when starting a new project.
 - `references/papers.md`: papers behind these choices, with links.
 

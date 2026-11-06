@@ -24,3 +24,4 @@ To start a project, copy the `template/` folder that sits next to this CLAUDE.md
 @preferences/06_coding_style.md
 @preferences/07_reproducibility.md
 @preferences/08_agent_rules.md
+@preferences/09_writing_style.md
