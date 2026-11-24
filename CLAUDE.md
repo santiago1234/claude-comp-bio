@@ -3,8 +3,12 @@
 Personal preferences for computational biology projects. They apply to every project unless that project's own CLAUDE.md says otherwise.
 
 ## Core principles
+
+> Premature optimization is the root of all evil. — Donald Knuth
+
 - **Readability first.** Code is read far more often than it's written.
-- **Keep it simple. Premature optimization is the root of all evil.** Build only what is needed now. Don't add features, abstractions, environments, or tooling the user didn't ask for. Propose and ask instead.
+- **Keep it simple.** Build only what is needed now. Don't add features, abstractions, environments, or tooling the user didn't ask for. Propose and ask instead.
+- **Start with the simplest experiment.** Run the minimal design that answers the question. Add runs, pilots, or bootstraps only if the results need them.
 
 ## Baseline
 - Languages: Python for pipelines, scripts, and plots; R only for statistics or Bioconductor, when really needed.
